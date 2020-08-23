@@ -1,19 +1,20 @@
 package com.flaviotps.durmabem.custom.commons
 
+import com.flaviotps.durmabem.custom.model.SoundModel
 import com.flaviotps.durmabem.custom.model.SoundPlayer
 
 class MediaPlayerPool {
 
-    private var mediaPlayers: MutableList<SoundPlayer>? = null
+    private var soundPlayers: MutableList<SoundPlayer>? = null
 
     fun addMediaPlayer (soundPlayer: SoundPlayer): Boolean {
-        if(mediaPlayers == null){
-            mediaPlayers = mutableListOf()
+        if(soundPlayers == null){
+            soundPlayers = mutableListOf()
         }
 
         if(find(soundPlayer.getId()) == null){
             soundPlayer.let {
-                mediaPlayers?.add(soundPlayer)
+                soundPlayers?.add(soundPlayer)
                 return true
             }
         }
@@ -22,7 +23,7 @@ class MediaPlayerPool {
     }
 
     fun playAll(){
-        mediaPlayers?.forEach {
+        soundPlayers?.forEach {
             if(!it.isPlaying()) {
                 it.play()
             }
@@ -30,33 +31,32 @@ class MediaPlayerPool {
     }
 
     fun pauseAll(){
-        mediaPlayers?.forEach {
+        soundPlayers?.forEach {
             if(it.isPlaying()) {
                 it.pause()
             }
         }
     }
 
-    fun pause(soundPlayer: SoundPlayer){
-        find(soundPlayer.getId())?.pause()
+    fun pause(soundModel: SoundModel){
+        find(soundModel.soundResource)?.pause()
     }
 
-    fun stop(soundPlayer: SoundPlayer){
-        find(soundPlayer.getId())?.stop()
-        mediaPlayers?.remove(soundPlayer)
-    }
-
-    fun play(soundPlayer: SoundPlayer){
-        find(soundPlayer.getId())?.play()
+    fun play(soundModel: SoundModel){
+        find(soundModel.soundResource)?.play()
     }
 
     fun isPlayingAny(): Boolean? {
-            return mediaPlayers?.any { it.isPlaying() }
+            return soundPlayers?.any { it.isPlaying() }
     }
 
     fun find(res:Int): SoundPlayer?{
-       return mediaPlayers?.find {
+       return soundPlayers?.find {
            it.getId() == res
        }
+    }
+
+    fun volume(soundModel: SoundModel){
+        find(soundModel.soundResource)?.volume(soundModel)
     }
 }

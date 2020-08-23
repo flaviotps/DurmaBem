@@ -3,6 +3,7 @@ package com.flaviotps.durmabem.custom.widgets
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
@@ -16,6 +17,10 @@ class SoundButton @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
+    interface VolumeListener{
+      fun onVolumeChanged(volume:Float)
+    }
+
     private var active = false
 
     init {
@@ -28,6 +33,8 @@ class SoundButton @JvmOverloads constructor(
         }
         isClickable = true
         isFocusable = true
+
+        volumeBar.max = MAX_VOLUME.toInt()
     }
 
     override fun setEnabled(enabled: Boolean) {
@@ -64,8 +71,31 @@ class SoundButton @JvmOverloads constructor(
         return active
     }
 
+    fun setSeekBarProgress(progress: Float){
+        volumeBar.progress = (progress*MAX_VOLUME).toInt()
+    }
+
     fun setActive(active: Boolean){
         this.active = active
         toggle(active)
+    }
+
+    fun setVolumeListener(volumeListener: VolumeListener){
+        volumeBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                volumeListener.onVolumeChanged((progress.toFloat()/MAX_VOLUME))
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+
+        })
+    }
+
+    companion object {
+        private const val MAX_VOLUME = 100f
     }
 }

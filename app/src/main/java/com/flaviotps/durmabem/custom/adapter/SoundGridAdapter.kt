@@ -16,20 +16,36 @@ class SoundGridAdapter(private val context: Context,
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         return SoundButton(context).apply {
-            setText(getItem(position).soundName)
-            setIcon(getItem(position).soundIcon)
-            mediaPlayerPool.find(getItem(position).soundResource)?.isPlaying()?.let { setActive(it) }
+
+            var soundModel = getItem(position)
+
+            mediaPlayerPool.find(soundModel.soundResource)?.let {
+                soundModel = it.soundModel
+                setActive(it.isPlaying())
+                setSeekBarProgress(soundModel.volume)
+            }
+
+            setText(soundModel.soundName)
+            setIcon(soundModel.soundIcon)
             setOnClickListener {
-                val soundPlayer = SoundPlayer(getItem(position),MediaPlayer.create(context,getItem(position).soundResource))
+                val soundPlayer = SoundPlayer(soundModel,MediaPlayer.create(context,soundModel.soundResource))
                 with(mediaPlayerPool){
                     if(isActive()) {
                         addMediaPlayer(soundPlayer)
-                        play(soundPlayer)
+                        play(soundModel)
                     }else{
-                        pause(soundPlayer)
+                        pause(soundModel)
                     }
                 }
             }
+
+            setVolumeListener(object : SoundButton.VolumeListener {
+                override fun onVolumeChanged(volume: Float) {
+                    soundModel.volume = volume
+                    mediaPlayerPool.volume(soundModel)
+                }
+
+            })
         }
     }
 

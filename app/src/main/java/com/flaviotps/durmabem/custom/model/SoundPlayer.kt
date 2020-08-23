@@ -2,7 +2,7 @@ package com.flaviotps.durmabem.custom.model
 
 import android.media.MediaPlayer
 
-class SoundPlayer(var soundInfo:SoundModel,var mediaPlayer: MediaPlayer){
+class SoundPlayer(var soundModel:SoundModel, var mediaPlayer: MediaPlayer){
 
     fun isPlaying(): Boolean {
         return mediaPlayer.isPlaying
@@ -18,11 +18,11 @@ class SoundPlayer(var soundInfo:SoundModel,var mediaPlayer: MediaPlayer){
     }
 
     fun getId(): Int {
-        return soundInfo.soundResource
+        return soundModel.soundResource
     }
 
-    fun stop(){
-        mediaPlayer.stop()
-        mediaPlayer.release()
+    fun volume(soundModel: SoundModel) {
+        this.soundModel = soundModel
+        mediaPlayer.setVolume(this.soundModel.volume, this.soundModel.volume)
     }
 }
