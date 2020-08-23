@@ -5,22 +5,22 @@ import android.media.MediaPlayer
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.flaviotps.durmabem.custom.commons.MediaPlayerPool
-import com.flaviotps.durmabem.custom.model.SoundModel
+import com.flaviotps.durmabem.custom.commons.MediaPlayerPoolManager
+import com.flaviotps.durmabem.custom.model.SoundInfo
 import com.flaviotps.durmabem.custom.model.SoundPlayer
 import com.flaviotps.durmabem.custom.widgets.SoundButton
 
 class SoundGridAdapter(private val context: Context,
-                       private val mediaPlayerPool: MediaPlayerPool,
-                       private val soundList: MutableList<SoundModel>): BaseAdapter() {
+                       private val mediaPlayerPoolManager: MediaPlayerPoolManager,
+                       private val soundList: MutableList<SoundInfo>): BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         return SoundButton(context).apply {
 
             var soundModel = getItem(position)
 
-            mediaPlayerPool.find(soundModel.soundResource)?.let {
-                soundModel = it.soundModel
+            mediaPlayerPoolManager.find(soundModel.soundResource)?.let {
+                soundModel = it.soundInfo
                 setActive(it.isPlaying())
                 setSeekBarProgress(soundModel.volume)
             }
@@ -29,7 +29,7 @@ class SoundGridAdapter(private val context: Context,
             setIcon(soundModel.soundIcon)
             setOnClickListener {
                 val soundPlayer = SoundPlayer(soundModel,MediaPlayer.create(context,soundModel.soundResource))
-                with(mediaPlayerPool){
+                with(mediaPlayerPoolManager){
                     if(isActive()) {
                         addMediaPlayer(soundPlayer)
                         play(soundModel)
@@ -42,14 +42,14 @@ class SoundGridAdapter(private val context: Context,
             setVolumeListener(object : SoundButton.VolumeListener {
                 override fun onVolumeChanged(volume: Float) {
                     soundModel.volume = volume
-                    mediaPlayerPool.volume(soundModel)
+                    mediaPlayerPoolManager.volume(soundModel)
                 }
 
             })
         }
     }
 
-    override fun getItem(position: Int): SoundModel {
+    override fun getItem(position: Int): SoundInfo {
         return soundList[position]
     }
 

@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:background="#512DA8"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp">
+
+    <ImageView
+        android:tint="@android:color/white"
+        android:id="@+id/icon"
+        android:layout_width="60dp"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/soundname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/icon"
+        android:shadowColor="#1F1D1D"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="5"
+        android:text="Testing"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/autor"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@id/soundname"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@id/icon"
+        android:shadowColor="#1F1D1D"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="5"
+        android:text="Testing is awecome"
+        android:textColor="#FFF"
+        android:textSize="14sp" />
+
+</RelativeLayout>

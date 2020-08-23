@@ -1,31 +1,32 @@
 package com.flaviotps.durmabem.custom.services
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
+import android.widget.RemoteViews
+import androidx.core.app.NotificationCompat
 import com.flaviotps.durmabem.R
-import com.flaviotps.durmabem.custom.commons.MediaPlayerPool
+import com.flaviotps.durmabem.custom.commons.MediaPlayerPoolManager
+import com.flaviotps.durmabem.custom.ext.setDrawableById
 
 
 class SoundService : Service() {
 
     private var binder = SoundServiceBinder()
-    private lateinit var mediaPlayerPool: MediaPlayerPool
+    private var mediaPlayerPoolManager: MediaPlayerPoolManager =  MediaPlayerPoolManager()
 
     inner class SoundServiceBinder : Binder() {
         fun getService(): SoundService {
             return this@SoundService
         }
-        fun getMediaPlayerPool(): MediaPlayerPool {
-            return mediaPlayerPool
+        fun getMediaPlayerPool(): MediaPlayerPoolManager {
+            return mediaPlayerPoolManager
         }
     }
 
@@ -39,8 +40,8 @@ class SoundService : Service() {
     override fun onCreate() {
         super.onCreate()
         Log.i("SoundService", "onCreate")
+        mediaPlayerPoolManager.setAuthor("Flavio Telles")
         createNotification()
-        mediaPlayerPool = MediaPlayerPool()
 
     }
 
@@ -54,21 +55,42 @@ class SoundService : Service() {
         Log.i("SoundService", "onRebind")
     }
 
-    private fun createNotification(){
-        if (Build.VERSION.SDK_INT >= 26) {
-            val CHANNEL_ID = "my_channel_01"
+
+    private fun createNotification() {
+        val contentView = RemoteViews(packageName, R.layout.notification)
+
+        mediaPlayerPoolManager.getSoundPool()?.apply {
+            contentView.setTextViewText(R.id.autor, author)
+            contentView.setTextViewText( R.id.soundname,"Soft Rain")
+            contentView.setDrawableById(
+                R.id.icon, "fire", resources, packageName
+            )
+        }
+
+        val channelId = "soundChannel"
+        //val defaultSoundUri: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder =
+            NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_more_vert_black_24dp)
+                .setContentTitle(getString(R.string.app_name))
+                .setCustomContentView(contentView)
+                .setAutoCancel(false)
+                //.setSound(defaultSoundUri)
+                .setContent(contentView)
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                CHANNEL_ID,
-                "Channel human readable title",
+                channelId,
+                getString(R.string.app_name),
                 NotificationManager.IMPORTANCE_DEFAULT
             )
-            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(
-                channel
-            )
-            val notification: Notification = Notification.Builder(this, CHANNEL_ID)
-                .setContentTitle("")
-                .setContentText("").build()
-            startForeground(1, notification)
+            notificationManager.createNotificationChannel(channel)
         }
+        // notificationManager.notify(1, notificationBuilder.build())
+
+        startForeground(1, notificationBuilder.build())
     }
+
+
 }
