@@ -9,4 +9,11 @@
         <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="SoundButton">
+        <attr name="android:enabled" />
+        <attr name="android:text" />
+        <attr name="icon" format="reference" />
+        <attr name="active" format="boolean" />
+    </declare-styleable>
+
 </resources>

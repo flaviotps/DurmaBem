@@ -15,7 +15,7 @@
         <activity android:name=".main.view.MainActivity" />
 
         <service
-            android:name=".services.SoundService"
+            android:name="com.flaviotps.durmabem.custom.services.SoundService"
             android:enabled="true"
             android:exported="true" />
 

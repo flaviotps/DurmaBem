@@ -1,4 +1,4 @@
-package com.flaviotps.durmabem
+package com.flaviotps.durmabem.custom
 
 object ConfigConstants {
      object SoundPool{
