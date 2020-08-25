@@ -16,8 +16,28 @@ class MediaPlayerPoolManager {
         soundPool.author = author
     }
 
-    fun addMediaPlayer (soundPlayer: SoundPlayer): Boolean {
+    fun removeAll(){
+        soundPool.sounds.forEach {
+            it.mediaPlayer.stop()
+        }
+        soundPool.sounds.clear()
+    }
 
+    fun setSoundPool(soundPool: SoundPool){
+        this.soundPool = soundPool
+        this.soundPool.sounds = soundPool.sounds
+        this.soundPool.author = soundPool.author
+    }
+
+    fun removePaused(){
+        soundPool.sounds.forEach {
+            if(!it.isPlaying()) {
+                it.stop()
+            }
+        }
+    }
+
+    fun addMediaPlayer (soundPlayer: SoundPlayer): Boolean {
         if(find(soundPlayer.getId()) == null){
             soundPool.apply {
                 sounds.apply{

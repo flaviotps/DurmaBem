@@ -1,4 +1,4 @@
-package com.flaviotps.durmabem.main.view
+package com.flaviotps.durmabem.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

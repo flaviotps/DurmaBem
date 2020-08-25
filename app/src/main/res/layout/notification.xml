@@ -1,45 +1,116 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout"
-    android:background="#512DA8"
     android:layout_width="fill_parent"
-    android:layout_height="60dp">
+    android:layout_height="60dp"
+    android:background="@drawable/notification_background"
+    android:orientation="horizontal">
 
-    <ImageView
-        android:tint="@android:color/white"
-        android:id="@+id/icon"
-        android:layout_width="60dp"
-        android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/soundname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@id/icon"
-        android:shadowColor="#1F1D1D"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="5"
-        android:text="Testing"
-        android:textColor="#FFF"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/nature" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/autor"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_below="@id/soundname"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@id/icon"
-        android:shadowColor="#1F1D1D"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="5"
-        android:text="Testing is awecome"
-        android:textColor="#FFF"
-        android:textSize="14sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#673AB7"
+                android:paddingTop="4dp">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:paddingLeft="8dp"
+                    android:text="Nature Sounds"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"></LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/play"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+                        <ImageButton
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:backgroundTint="@android:color/transparent"
+                            android:id="@+id/play_pause_icon"
+                            android:layout_gravity="center"
+                            android:scaleY="0.8"
+                            android:scaleX="0.8"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/close"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="right">
+                        <ImageButton
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:layout_marginEnd="8dp"
+                            android:layout_gravity="center"
+                            android:scaleY="0.8"
+                            android:scaleX="0.8"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/ic_close_black_24dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

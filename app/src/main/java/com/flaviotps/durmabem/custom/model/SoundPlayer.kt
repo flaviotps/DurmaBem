@@ -21,6 +21,11 @@ class SoundPlayer(var soundInfo:SoundInfo, var mediaPlayer: MediaPlayer){
         return soundInfo.soundResource
     }
 
+    fun stop(){
+        mediaPlayer.stop()
+        mediaPlayer.release()
+    }
+
     fun volume(soundInfo: SoundInfo) {
         this.soundInfo = soundInfo
         mediaPlayer.setVolume(this.soundInfo.volume, this.soundInfo.volume)

@@ -1,4 +1,4 @@
-package com.flaviotps.durmabem.soundMixer
+package com.flaviotps.durmabem.ui.soundMixer
 
 import android.os.Bundle
 import androidx.lifecycle.Observer

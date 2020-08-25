@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flaviotps.durmabem">
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -11,22 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".soundMixer.SoundMixerServiceActivity"></activity>
-        <activity android:name=".main.view.MainActivity" />
+        <activity android:name=".ui.preset.PresetsActivity" />
+        <activity android:name=".ui.soundMixer.SoundMixerServiceActivity" />
+        <activity android:name=".ui.main.MainActivity" />
 
         <service
-            android:name="com.flaviotps.durmabem.custom.services.SoundService"
-            android:enabled="true"
-            android:exported="true" />
+            android:name=".custom.services.SoundService"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="ACTION_PLAY_PAUSE"/>
+                <action android:name="ACTION_CLOSE"/>
+            </intent-filter>
+        </service>
 
         <activity
-            android:name=".splash.view.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

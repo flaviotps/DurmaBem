@@ -1,4 +1,4 @@
-package com.flaviotps.durmabem.custom.widgets
+package com.flaviotps.durmabem.ui.widgets
 
 import android.content.Context
 import android.util.AttributeSet

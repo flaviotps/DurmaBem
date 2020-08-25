@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import com.flaviotps.durmabem.custom.commons.MediaPlayerPoolManager
 import com.flaviotps.durmabem.custom.model.SoundInfo
 import com.flaviotps.durmabem.custom.model.SoundPlayer
-import com.flaviotps.durmabem.custom.widgets.SoundButton
+import com.flaviotps.durmabem.ui.widgets.SoundButton
 
 class SoundGridAdapter(private val context: Context,
                        private val mediaPlayerPoolManager: MediaPlayerPoolManager,
