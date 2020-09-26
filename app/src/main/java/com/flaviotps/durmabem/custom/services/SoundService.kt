@@ -36,8 +36,7 @@ class SoundService : Service() {
                 soundNotification?.create()
             }
             ACTION_CLOSE -> {
-                mediaPlayerPoolManager.pauseAll()
-                mediaPlayerPoolManager.removePaused()
+                mediaPlayerPoolManager.stopAll()
                 stopForeground(true)
             }
         }

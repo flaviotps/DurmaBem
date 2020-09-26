@@ -28,7 +28,7 @@ class SoundGridAdapter(private val context: Context,
             setText(soundModel.soundName)
             setIcon(soundModel.soundIcon)
             setOnClickListener {
-                val soundPlayer = SoundPlayer(soundModel,MediaPlayer.create(context,soundModel.soundResource))
+                val soundPlayer = SoundPlayer(context,soundModel)
                 with(mediaPlayerPoolManager){
                     if(isActive()) {
                         addMediaPlayer(soundPlayer)

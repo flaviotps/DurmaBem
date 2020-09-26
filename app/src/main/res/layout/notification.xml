@@ -79,8 +79,6 @@
                             android:backgroundTint="@android:color/transparent"
                             android:id="@+id/play_pause_icon"
                             android:layout_gravity="center"
-                            android:scaleY="0.8"
-                            android:scaleX="0.8"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:paddingTop="4dp"

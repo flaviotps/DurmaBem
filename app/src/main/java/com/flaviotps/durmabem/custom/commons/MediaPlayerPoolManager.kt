@@ -18,7 +18,7 @@ class MediaPlayerPoolManager {
 
     fun removeAll(){
         soundPool.sounds.forEach {
-            it.mediaPlayer.stop()
+            it.mediaPlayer?.stop()
         }
         soundPool.sounds.clear()
     }
@@ -27,14 +27,6 @@ class MediaPlayerPoolManager {
         this.soundPool = soundPool
         this.soundPool.sounds = soundPool.sounds
         this.soundPool.author = soundPool.author
-    }
-
-    fun removePaused(){
-        soundPool.sounds.forEach {
-            if(!it.isPlaying()) {
-                it.stop()
-            }
-        }
     }
 
     fun addMediaPlayer (soundPlayer: SoundPlayer): Boolean {
@@ -51,9 +43,7 @@ class MediaPlayerPoolManager {
 
     fun playAll(){
         soundPool.sounds.forEach {
-            if(!it.isPlaying()) {
                 it.play()
-            }
         }
     }
 
@@ -62,6 +52,12 @@ class MediaPlayerPoolManager {
             if(it.isPlaying()) {
                 it.pause()
             }
+        }
+    }
+
+    fun stopAll(){
+        soundPool.sounds.forEach {
+                it.stop()
         }
     }
 

@@ -2,6 +2,7 @@ package com.flaviotps.durmabem.ui.preset
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.flaviotps.durmabem.R
 import com.flaviotps.durmabem.custom.adapter.PresetsGridAdapter
@@ -12,8 +13,9 @@ import com.flaviotps.durmabem.custom.model.SoundPool
 import com.flaviotps.durmabem.custom.services.SoundService
 import kotlinx.android.synthetic.main.activity_presets.*
 
-class PresetsActivity : BaseServiceActivity() {
-
+class PresetsActivity : BaseServiceActivity()
+{
+    lateinit var adapter: PresetsGridAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_presets)
@@ -28,13 +30,14 @@ class PresetsActivity : BaseServiceActivity() {
     private fun setupPresets(binder:SoundService.SoundServiceBinder){
         val list = mutableListOf<SoundPool>()
         val soundPool = SoundPool()
-        soundPool.sounds.add(SoundPlayer(SoundInfo("FIRE",R.raw.fire,R.drawable.fire), MediaPlayer.create(this,R.raw.fire)))
 
-        val soundPool2 = SoundPool()
-        soundPool2.sounds.add(SoundPlayer(SoundInfo("RAIN",R.raw.rain,R.drawable.rain), MediaPlayer.create(this,R.raw.rain)))
+            soundPool.sounds.add(SoundPlayer(PresetsActivity@this ,SoundInfo("FIRE",R.raw.thunder,R.drawable.fire)))
+            list.add(soundPool)
 
-        list.add(soundPool)
-        list.add(soundPool2)
-        gridViewPresets.adapter = PresetsGridAdapter(this,binder.getMediaPlayerPool(),list)
+            soundPool.sounds.add(SoundPlayer(PresetsActivity@this,SoundInfo("RAIN",R.raw.rain,R.drawable.rain)))
+            list.add(soundPool)
+
+        adapter = PresetsGridAdapter(this,binder.getMediaPlayerPool(),list)
+        gridViewPresets.adapter = adapter
     }
 }

@@ -17,12 +17,12 @@
         android:layout_marginBottom="24dp"
         android:clickable="false"
         android:focusable="false"
-        android:tint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rain" />
+        app:srcCompat="@drawable/rain"
+        app:tint="@android:color/white" />
 
     <TextView
         android:id="@+id/label"
@@ -64,7 +64,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/ic_more_vert_black_24dp"
-        android:tint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/white" />
 </androidx.constraintlayout.widget.ConstraintLayout>
