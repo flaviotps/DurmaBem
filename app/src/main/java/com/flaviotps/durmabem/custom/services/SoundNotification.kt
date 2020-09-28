@@ -75,7 +75,7 @@ class SoundNotification(
 
         //SETUP BUTTONS
         // buttonsIntent.putExtra("do_action", "play")
-        mediaPlayerPoolManager.isPlayingAny()?.let {
+        mediaPlayerPoolManager.isPlayingAny().let {
             if (it) {
                 contentView.setDrawableById(
                     R.id.play_pause_icon,

@@ -26,7 +26,7 @@ class SoundService : Service() {
         super.onStartCommand(intent, flags, startId)
         when (intent?.action) {
             ACTION_PLAY -> {
-                mediaPlayerPoolManager.isPlayingAny()?.let {
+                mediaPlayerPoolManager.isPlayingAny().let {
                     if(it){
                         mediaPlayerPoolManager.pauseAll()
                     }else{
@@ -43,11 +43,9 @@ class SoundService : Service() {
         return START_STICKY
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        mediaPlayerPoolManager.setAuthor("Flavio Telles")
-        soundNotification = SoundNotification(this,this,mediaPlayerPoolManager)
-        soundNotification?.create()
+    fun createNotification(){
+            soundNotification = SoundNotification(this, this, mediaPlayerPoolManager)
+            soundNotification?.create()
     }
 
     override fun onBind(intent: Intent): IBinder {

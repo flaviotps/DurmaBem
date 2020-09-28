@@ -3,6 +3,7 @@ package com.flaviotps.durmabem.custom.commons
 import com.flaviotps.durmabem.custom.model.SoundInfo
 import com.flaviotps.durmabem.custom.model.SoundPlayer
 import com.flaviotps.durmabem.custom.model.SoundPool
+import com.flaviotps.durmabem.custom.services.SoundNotification
 
 class MediaPlayerPoolManager {
 
@@ -27,6 +28,7 @@ class MediaPlayerPoolManager {
         this.soundPool = soundPool
         this.soundPool.sounds = soundPool.sounds
         this.soundPool.author = soundPool.author
+        this.soundPool.title = soundPool.title
     }
 
     fun addMediaPlayer (soundPlayer: SoundPlayer): Boolean {
@@ -69,8 +71,14 @@ class MediaPlayerPoolManager {
         find(soundInfo.soundResource)?.play()
     }
 
-    fun isPlayingAny(): Boolean? {
-            return soundPool.sounds.any { it.isPlaying() }
+    fun isPlayingAny(): Boolean {
+        var found = false
+        soundPool.sounds.forEach {
+            if(it.isPlaying()){
+                found = true
+            }
+        }
+        return found
     }
 
     fun find(res:Int): SoundPlayer?{

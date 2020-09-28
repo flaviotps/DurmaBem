@@ -7,22 +7,32 @@ import java.lang.Exception
 class SoundPlayer(var context: Context, var soundInfo:SoundInfo){
 
     var mediaPlayer: MediaPlayer? = null
+    var isSoundPlaying : Boolean = false
 
     fun isPlaying(): Boolean {
-        mediaPlayer?.isPlaying?.let {
-            return it
-        }
-        return false
+        return isSoundPlaying
     }
 
     fun play(){
-        mediaPlayer = MediaPlayer.create(context, soundInfo.soundResource)
-        mediaPlayer?.setOnPreparedListener {
+        if(mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(context, soundInfo.soundResource)
+            isSoundPlaying = true
+            mediaPlayer?.setOnPreparedListener {
+                mediaPlayer?.start()
+            }
+            mediaPlayer?.setOnErrorListener{mp, what, extra ->
+                isSoundPlaying = false
+                return@setOnErrorListener false
+            }
+        }else{
+            isSoundPlaying = true
             mediaPlayer?.start()
         }
+
     }
     fun pause(){
-            mediaPlayer?.pause()
+        isSoundPlaying = false
+        mediaPlayer?.pause()
     }
 
     fun getId(): Int {
@@ -31,8 +41,9 @@ class SoundPlayer(var context: Context, var soundInfo:SoundInfo){
 
     fun stop(){
         try{
+            isSoundPlaying = false
             mediaPlayer?.stop()
-            mediaPlayer?.release()
+            mediaPlayer = null
         }catch (e:Exception){
             e.printStackTrace()
         }
