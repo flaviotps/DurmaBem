@@ -9,6 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.flaviotps.durmabem.R
+import com.flaviotps.durmabem.custom.ext.setFromResource
 import com.flaviotps.durmabem.custom.model.SoundPool
 import com.flaviotps.durmabem.custom.services.SoundService
 
@@ -26,11 +27,12 @@ class PresetsGridAdapter(
         val title = view.findViewById<TextView>(R.id.title)
 
         title.text = getItem(position).title
+        getItem(position).image?.let { thumb.setFromResource(context, it) }
 
         thumb.setOnClickListener {
             binder.getMediaPlayerPool().stopAll()
             binder.getMediaPlayerPool().setSoundPool(getItem(position))
-            binder.getMediaPlayerPool().playAll()
+            binder.getMediaPlayerPool().playAll(context)
             binder.getService().createNotification();
         }
 

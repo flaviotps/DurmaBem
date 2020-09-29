@@ -4,16 +4,16 @@ import android.content.Context
 import android.media.MediaPlayer
 import java.lang.Exception
 
-class SoundPlayer(var context: Context, var soundInfo:SoundInfo){
+class SoundPlayer(var soundInfo:SoundInfo){
 
     var mediaPlayer: MediaPlayer? = null
-    var isSoundPlaying : Boolean = false
+    private var isSoundPlaying : Boolean = false
 
     fun isPlaying(): Boolean {
         return isSoundPlaying
     }
 
-    fun play(){
+    fun play(context:Context){
         if(mediaPlayer == null) {
             mediaPlayer = MediaPlayer.create(context, soundInfo.soundResource)
             isSoundPlaying = true

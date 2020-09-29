@@ -30,7 +30,7 @@ class SoundService : Service() {
                     if(it){
                         mediaPlayerPoolManager.pauseAll()
                     }else{
-                        mediaPlayerPoolManager.playAll()
+                        mediaPlayerPoolManager.playAll(this)
                     }
                 }
                 soundNotification?.create()

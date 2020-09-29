@@ -1,5 +1,6 @@
 package com.flaviotps.durmabem.custom.commons
 
+import android.content.Context
 import com.flaviotps.durmabem.custom.model.SoundInfo
 import com.flaviotps.durmabem.custom.model.SoundPlayer
 import com.flaviotps.durmabem.custom.model.SoundPool
@@ -43,9 +44,9 @@ class MediaPlayerPoolManager {
         return false
     }
 
-    fun playAll(){
+    fun playAll(context: Context){
         soundPool.sounds.forEach {
-                it.play()
+                it.play(context)
         }
     }
 
@@ -67,8 +68,8 @@ class MediaPlayerPoolManager {
         find(soundInfo.soundResource)?.pause()
     }
 
-    fun play(soundInfo: SoundInfo){
-        find(soundInfo.soundResource)?.play()
+    fun play(context:Context,soundInfo: SoundInfo){
+        find(soundInfo.soundResource)?.play(context)
     }
 
     fun isPlayingAny(): Boolean {

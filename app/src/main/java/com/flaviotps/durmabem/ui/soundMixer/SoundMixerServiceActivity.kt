@@ -17,8 +17,8 @@ class SoundMixerServiceActivity : BaseServiceActivity() {
         onServiceAvailable().observe(this, Observer {
                 it?.let { binder ->
                     val list = mutableListOf<SoundInfo>()
-                    list.add(SoundInfo("RAIN",R.raw.rain,R.drawable.rain))
-                    list.add(SoundInfo("FIRE",R.raw.fire,R.drawable.fire))
+                   // list.add(SoundInfo("RAIN",R.raw.rain,R.drawable.rain))
+                   // list.add(SoundInfo("FIRE",R.raw.fire,R.drawable.fire))
                     gridViewSounds.adapter = SoundGridAdapter(this,binder.getMediaPlayerPool(), list)
                 }
         })
