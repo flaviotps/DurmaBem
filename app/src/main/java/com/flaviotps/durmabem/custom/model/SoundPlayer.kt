@@ -2,37 +2,38 @@ package com.flaviotps.durmabem.custom.model
 
 import android.content.Context
 import android.media.MediaPlayer
-import java.lang.Exception
+import android.net.Uri
+import android.os.Handler
+import androidx.core.os.postDelayed
 
-class SoundPlayer(var soundInfo:SoundInfo){
 
-    var mediaPlayer: MediaPlayer? = null
+class SoundPlayer(var soundInfo: SoundInfo){
+
+    var mediaPlayer1: MediaPlayer? = null
+    var mediaPlayer2: MediaPlayer? = null
     private var isSoundPlaying : Boolean = false
 
     fun isPlaying(): Boolean {
         return isSoundPlaying
     }
 
-    fun play(context:Context){
-        if(mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(context, soundInfo.soundResource)
-            isSoundPlaying = true
-            mediaPlayer?.setOnPreparedListener {
-                mediaPlayer?.start()
+    fun play(context: Context) {
+        val mediaPath = Uri.parse("android.resource://" + context.packageName + "/" + soundInfo.soundResource)
+            mediaPlayer1 = MediaPlayer()
+            mediaPlayer1?.setDataSource(context, mediaPath)
+            mediaPlayer1?.prepareAsync()
+            mediaPlayer1?.setOnPreparedListener {
+                mediaPlayer1?.start()
+                handlerMedia2()
             }
-            mediaPlayer?.setOnErrorListener{mp, what, extra ->
-                isSoundPlaying = false
-                return@setOnErrorListener false
-            }
-        }else{
-            isSoundPlaying = true
-            mediaPlayer?.start()
-        }
 
+            mediaPlayer2 = MediaPlayer()
+            mediaPlayer2?.setDataSource(context, mediaPath)
+            mediaPlayer2?.prepare()
     }
     fun pause(){
         isSoundPlaying = false
-        mediaPlayer?.pause()
+        mediaPlayer1?.pause()
     }
 
     fun getId(): Int {
@@ -42,15 +43,39 @@ class SoundPlayer(var soundInfo:SoundInfo){
     fun stop(){
         try{
             isSoundPlaying = false
-            mediaPlayer?.stop()
-            mediaPlayer = null
-        }catch (e:Exception){
+            mediaPlayer1?.stop()
+            mediaPlayer1 = null
+        }catch (e: Exception){
             e.printStackTrace()
         }
     }
 
     fun volume(soundInfo: SoundInfo) {
         this.soundInfo = soundInfo
-        mediaPlayer?.setVolume(this.soundInfo.volume, this.soundInfo.volume)
+        mediaPlayer1?.setVolume(this.soundInfo.volume, this.soundInfo.volume)
+    }
+
+    private fun handlerMedia2(){
+        val handler = Handler()
+        (mediaPlayer1?.duration?.minus(2000))?.toLong()?.let { delay ->
+            handler.postDelayed({
+                mediaPlayer2?.start()
+                handlerMedia1()
+            },
+                delay
+            )
+        }
+    }
+
+    private fun handlerMedia1(){
+        val handler = Handler()
+        (mediaPlayer2?.duration?.minus(2000))?.toLong()?.let { delay ->
+            handler.postDelayed({
+                mediaPlayer1?.start()
+                handlerMedia2()
+            },
+                delay
+            )
+        }
     }
 }

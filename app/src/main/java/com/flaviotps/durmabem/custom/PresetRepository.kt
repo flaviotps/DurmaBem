@@ -14,19 +14,11 @@ class PresetRepository {
                SoundPlayer(
                    SoundInfo(
                    "Nature Thunder",
-                   R.raw.nature_thunder,
-                   R.drawable.rain
+                   R.raw.nature_heavy_rain,
+                   R.drawable.rain,
+                   loopOffset = 1200
                )
-           ),         SoundPlayer(
-                   SoundInfo(
-                       "Nature Rain",
-                       R.raw.nature_heavy_rain,
-                       R.drawable.rain
-                   )
-               )))
-
-
-
+           )))
 
         return list
     }
