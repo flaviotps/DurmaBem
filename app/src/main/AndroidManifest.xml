@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.flaviotps.durmabem">
+    package="com.flaviotps.sleepwell">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -8,17 +8,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.preset.PresetsActivity" />
-        <activity android:name=".ui.soundMixer.SoundMixerServiceActivity" />
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name="com.flaviotps.sleepwell.ui.main.MainActivity" />
 
         <service
-            android:name=".custom.services.SoundService"
+            android:name="com.flaviotps.sleepwell.services.SoundService"
             android:enabled="true">
             <intent-filter>
                 <action android:name="ACTION_PLAY_PAUSE"/>
@@ -27,7 +25,7 @@
         </service>
 
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name="com.flaviotps.sleepwell.ui.splash.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash"
             android:theme="@style/FullscreenTheme">

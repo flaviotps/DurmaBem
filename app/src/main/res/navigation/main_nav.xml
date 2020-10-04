@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/presetsFragment">
+
+    <fragment
+        android:id="@+id/presetsFragment"
+        android:name="com.flaviotps.sleepwell.ui.preset.PresetsFragment"
+        android:label="fragment_presets"
+        tools:layout="@layout/fragment_presets" />
+    <fragment
+        android:id="@+id/mixerFragment"
+        android:name="com.flaviotps.sleepwell.ui.soundMixer.MixerFragment"
+        android:label="fragment_mixer"
+        tools:layout="@layout/fragment_mixer" />
+</navigation>
