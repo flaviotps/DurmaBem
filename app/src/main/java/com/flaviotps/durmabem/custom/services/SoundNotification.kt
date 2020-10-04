@@ -12,6 +12,8 @@ import androidx.core.app.NotificationCompat
 import com.flaviotps.durmabem.R
 import com.flaviotps.durmabem.custom.commons.MediaPlayerPoolManager
 import com.flaviotps.durmabem.custom.ext.setDrawableById
+import com.flaviotps.durmabem.custom.model.SoundInfo
+import com.flaviotps.durmabem.custom.model.SoundPool
 
 
 class SoundNotification(
@@ -34,7 +36,7 @@ class SoundNotification(
         }
         return channel
     }
-    fun create() {
+    fun create(soundPool: SoundPool) {
 
         //CREATE NOTIFICATION CHANNEL
         notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -45,7 +47,7 @@ class SoundNotification(
             }
         }
 
-        val contentView = getRemoteView()
+        val contentView = getRemoteView(soundPool)
 
         val notification =
             NotificationCompat.Builder(context, CHANNEL_ID)
@@ -61,16 +63,20 @@ class SoundNotification(
         notificationManager?.notify(SoundService.NOTIFICATION_FLAG, notification)
     }
 
-    private fun getRemoteView(): RemoteViews {
+    private fun getRemoteView(soundPool: SoundPool): RemoteViews {
         //CREATE CUSTOM NOTIFICATION
         val contentView =
             RemoteViews(context.packageName, R.layout.notification)
         mediaPlayerPoolManager.getSoundPool()?.apply {
             // contentView.setTextViewText(R.id.autor, author)
-            contentView.setTextViewText(R.id.name, "Soft Rain")
-            contentView.setDrawableById(
-                R.id.icon, "nature", context.resources, context.packageName
-            )
+            contentView.setTextViewText(R.id.name, soundPool.title)
+
+            soundPool.image?.let {
+                contentView.setImageViewResource(
+                    R.id.icon,
+                    it
+                )
+            }
         }
 
         //SETUP BUTTONS

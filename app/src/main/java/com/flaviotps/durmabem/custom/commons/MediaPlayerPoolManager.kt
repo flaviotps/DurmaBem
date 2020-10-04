@@ -20,7 +20,7 @@ class MediaPlayerPoolManager {
 
     fun removeAll(){
         soundPool.sounds.forEach {
-            it.mediaPlayer1?.stop()
+            it.stop()
         }
         soundPool.sounds.clear()
     }

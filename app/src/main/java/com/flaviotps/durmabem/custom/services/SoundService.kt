@@ -33,7 +33,7 @@ class SoundService : Service() {
                         mediaPlayerPoolManager.playAll(this)
                     }
                 }
-                soundNotification?.create()
+                mediaPlayerPoolManager.getSoundPool()?.let { soundNotification?.create(it) }
             }
             ACTION_CLOSE -> {
                 mediaPlayerPoolManager.stopAll()
@@ -44,8 +44,10 @@ class SoundService : Service() {
     }
 
     fun createNotification(){
+        mediaPlayerPoolManager.getSoundPool()?.let {
             soundNotification = SoundNotification(this, this, mediaPlayerPoolManager)
-            soundNotification?.create()
+            soundNotification?.create(it)
+        }
     }
 
     override fun onBind(intent: Intent): IBinder {

@@ -28,8 +28,6 @@ class PresetsActivity : BaseServiceActivity()
     }
 
     private fun setupPresets(binder: SoundService.SoundServiceBinder){
-
-
         adapter = PresetsGridAdapter(this, binder, presetRepository.getPresets())
         gridViewPresets.adapter = adapter
     }
