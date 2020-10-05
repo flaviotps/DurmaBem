@@ -26,36 +26,13 @@ open class BaseServiceActivity : AppCompatActivity() {
 
     private fun startSoundService() {
             val intent = Intent(this, SoundService::class.java)
-            ContextCompat.startForegroundService(this, intent)
+           // ContextCompat.startForegroundService(this, intent)
             bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initPlayer()
         startSoundService()
-    }
-
-    private fun initPlayer(){
-        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
-        supportActionBar?.setCustomView(R.layout.toolbar_custom)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        toolbar_title.text = resources.getString(R.string.app_name)
-
-        togglePlayPause()
-    }
-
-    private fun togglePlayPause(){
-/*        val playAndPause = supportActionBar?.customView?.findViewById<ImageButton>(R.id.playAndPause)
-       onServiceAvailable.observe(this, Observer {
-            soundServiceBinder?.getMediaPlayerPool()?.isPlaying?.observe(this, Observer {
-                if(it){
-                    playAndPause?.setImageResource(R.drawable.ic_pause_black_24dp)
-                }else{
-                    playAndPause?.setImageResource(R.drawable.ic_play_arrow_white_24dp)
-                }
-            })
-       })*/
     }
 
     private fun createServiceConnection(): ServiceConnection{
@@ -65,6 +42,7 @@ open class BaseServiceActivity : AppCompatActivity() {
             }
             override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
                 soundServiceBinder = (binder as SoundService.SoundServiceBinder)
+                soundServiceBinder?.getService()?.startMediaManager()
                 onServiceAvailable.postValue(soundServiceBinder)
             }
         }

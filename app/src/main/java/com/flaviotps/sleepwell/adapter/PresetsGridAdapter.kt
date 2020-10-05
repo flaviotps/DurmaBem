@@ -30,9 +30,9 @@ class PresetsGridAdapter(
         getItem(position).image?.let { thumb.setFromResource(context, it) }
 
         thumb.setOnClickListener {
-            binder.getMediaPlayerPool().stopAll()
-            binder.getMediaPlayerPool().setSoundPool(getItem(position))
-            binder.getMediaPlayerPool().playAll(context)
+            binder.getService().getMediaPoolManager()?.stopAll()
+            binder.getService().getMediaPoolManager()?.setSoundPool(getItem(position))
+            binder.getService().getMediaPoolManager()?.playAll(context)
             binder.getService().createNotification();
         }
 

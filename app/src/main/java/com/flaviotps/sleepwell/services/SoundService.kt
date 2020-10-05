@@ -11,33 +11,34 @@ import com.flaviotps.sleepwell.managers.MediaPlayerPoolManager
 class SoundService : Service() {
 
     private var binder = SoundServiceBinder()
-    private var mediaPlayerPoolManager: MediaPlayerPoolManager =  MediaPlayerPoolManager()
+    private var mediaPlayerPoolManager: MediaPlayerPoolManager? = null
     private var soundNotification: SoundNotification? = null
 
     inner class SoundServiceBinder : Binder() {
         fun getService(): SoundService {
             return this@SoundService
         }
-        fun getMediaPlayerPool(): MediaPlayerPoolManager {
-            return mediaPlayerPoolManager
-        }
+    }
+
+    fun getMediaPoolManager(): MediaPlayerPoolManager? {
+        return mediaPlayerPoolManager
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         when (intent?.action) {
             ACTION_PLAY -> {
-                mediaPlayerPoolManager.isPlayingAny().let {
-                    if(it){
-                        mediaPlayerPoolManager.pauseAll()
+                mediaPlayerPoolManager?.isPlayingAny().let {
+                    if(it!!){
+                        mediaPlayerPoolManager?.pauseAll()
                     }else{
-                        mediaPlayerPoolManager.playAll(this)
+                        mediaPlayerPoolManager?.playAll(this)
                     }
                 }
-                mediaPlayerPoolManager.getSoundPool()?.let { soundNotification?.create(it) }
+                mediaPlayerPoolManager?.getSoundPool()?.let { soundNotification?.create(it) }
             }
             ACTION_CLOSE -> {
-                mediaPlayerPoolManager.stopAll()
+                mediaPlayerPoolManager?.stopAll()
                 stopForeground(true)
             }
         }
@@ -45,14 +46,18 @@ class SoundService : Service() {
     }
 
     fun createNotification(){
-        mediaPlayerPoolManager.getSoundPool()?.let {
-            soundNotification = SoundNotification(this, this, mediaPlayerPoolManager)
+        mediaPlayerPoolManager?.getSoundPool()?.let {
+            soundNotification = SoundNotification(this, this, mediaPlayerPoolManager!!)
             soundNotification?.create(it)
         }
     }
 
     override fun onBind(intent: Intent): IBinder {
         return binder
+    }
+
+    fun startMediaManager(){
+        mediaPlayerPoolManager = MediaPlayerPoolManager()
     }
 
     companion object{
