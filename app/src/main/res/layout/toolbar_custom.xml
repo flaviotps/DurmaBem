@@ -52,7 +52,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/playAndPause"
+                android:id="@+id/toolbar_playAndPause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -82,7 +82,7 @@
                 android:tint="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/playAndPause"
+                app:layout_constraintStart_toEndOf="@+id/toolbar_playAndPause"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_equalizer" />
         </androidx.constraintlayout.widget.ConstraintLayout>

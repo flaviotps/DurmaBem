@@ -1,7 +1,9 @@
 package com.flaviotps.sleepwell.ui.main
 
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.appcompat.app.ActionBar
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.flaviotps.sleepwell.R
@@ -22,5 +24,26 @@ class MainActivity : BaseServiceActivity() {
         supportActionBar?.setCustomView(R.layout.toolbar_custom)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         toolbar_title.text = resources.getString(R.string.app_name)
+        togglePlayPause()
+    }
+
+    private fun togglePlayPause(){
+        onServiceAvailable().observe(this, Observer {binder ->
+            toolbar_playAndPause.setOnClickListener { binder?.getService()?.getMediaPoolManager()?.apply {
+                if(isPlayingAny()){
+                    stopAll()
+                }else{
+                    playAll(this@MainActivity)
+                }
+            } }
+            binder?.getService()?.getMediaPoolManager()?.isAnyPlayingLiveData()?.observe(this, Observer {playing ->
+                val playAndPause = supportActionBar?.customView?.findViewById<ImageButton>(R.id.toolbar_playAndPause)
+                if(playing){
+                    playAndPause?.setImageResource(R.drawable.ic_pause_black_24dp)
+                }else{
+                    playAndPause?.setImageResource(R.drawable.ic_play_arrow_white_24dp)
+                }
+            })
+        })
     }
 }
