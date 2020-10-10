@@ -8,9 +8,20 @@ import android.widget.Toast
 
 class SoundPlayer(var soundInfo: SoundInfo){
 
-    var mediaPlayer1: MediaPlayer? = null
-    var mediaPlayer2: MediaPlayer? = null
+    private var mediaPlayer1: MediaPlayer? = null
+    private var mediaPlayer2: MediaPlayer? = null
+    private var handler1: Handler? = null
+    private var handler2: Handler? = null
     private var isSoundPlaying : Boolean = false
+
+    private var runnable1  = {
+        mediaPlayer1?.start()
+        handlerMedia2()
+    }
+    private var runnable2  = {
+        mediaPlayer2?.start()
+        handlerMedia1()
+    }
 
     fun isPlaying(): Boolean {
         return isSoundPlaying
@@ -18,6 +29,8 @@ class SoundPlayer(var soundInfo: SoundInfo){
 
     fun play(context: Context) {
         val mediaPath = Uri.parse("android.resource://" + context.packageName + "/" + soundInfo.soundResource)
+
+        if(mediaPlayer1 == null){
             mediaPlayer1 = MediaPlayer()
             mediaPlayer1?.setDataSource(context, mediaPath)
             mediaPlayer1?.prepareAsync()
@@ -25,14 +38,19 @@ class SoundPlayer(var soundInfo: SoundInfo){
                 mediaPlayer1?.start()
                 handlerMedia2()
             }
+        }else{
+            mediaPlayer1?.start()
+        }
+
+        if(mediaPlayer2 == null){
             mediaPlayer1?.setOnErrorListener { mp, what, extra ->
                 Toast.makeText(context,"Error", Toast.LENGTH_SHORT).show()
                 return@setOnErrorListener false
             }
-
             mediaPlayer2 = MediaPlayer()
             mediaPlayer2?.setDataSource(context, mediaPath)
             mediaPlayer2?.prepare()
+        }
 
         isSoundPlaying = true
     }
@@ -40,6 +58,8 @@ class SoundPlayer(var soundInfo: SoundInfo){
         isSoundPlaying = false
         mediaPlayer1?.pause()
         mediaPlayer2?.pause()
+        handler1?.removeCallbacks(runnable1)
+        handler2?.removeCallbacks(runnable2)
     }
 
     fun getId(): Int {
@@ -53,6 +73,8 @@ class SoundPlayer(var soundInfo: SoundInfo){
             mediaPlayer1 = null
             mediaPlayer2?.stop()
             mediaPlayer2 = null
+            handler1?.removeCallbacks(runnable1)
+            handler2?.removeCallbacks(runnable2)
         }catch (e: Exception){
             e.printStackTrace()
         }
@@ -65,26 +87,16 @@ class SoundPlayer(var soundInfo: SoundInfo){
     }
 
     private fun handlerMedia2(){
-        val handler = Handler()
-        (mediaPlayer1?.duration?.minus(soundInfo.loopOffset))?.toLong()?.let { delay ->
-            handler.postDelayed({
-                mediaPlayer2?.start()
-                handlerMedia1()
-            },
-                delay
-            )
+        handler2 = Handler()
+        mediaPlayer1?.duration?.minus(soundInfo.loopOffset)?.toLong()?.let { delay ->
+            handler2?.postDelayed(runnable2,delay)
         }
     }
 
     private fun handlerMedia1(){
-        val handler = Handler()
-        (mediaPlayer2?.duration?.minus(soundInfo.loopOffset))?.toLong()?.let { delay ->
-            handler.postDelayed({
-                mediaPlayer1?.start()
-                handlerMedia2()
-            },
-                delay
-            )
+        handler1 = Handler()
+        mediaPlayer2?.duration?.minus(soundInfo.loopOffset)?.toLong()?.let { delay ->
+            handler1?.postDelayed(runnable1,delay)
         }
     }
 }

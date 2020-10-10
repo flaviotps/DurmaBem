@@ -4,6 +4,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.widget.ImageButton
@@ -25,9 +26,13 @@ open class BaseServiceActivity : AppCompatActivity() {
     private var onServiceAvailable = MutableLiveData<SoundService.SoundServiceBinder?>(null)
 
     private fun startSoundService() {
-            val intent = Intent(this, SoundService::class.java)
-           // ContextCompat.startForegroundService(this, intent)
-            bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        val intent = Intent(this, SoundService::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent);
+        } else {
+            startService(intent);
+        }
+       bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +47,6 @@ open class BaseServiceActivity : AppCompatActivity() {
             }
             override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
                 soundServiceBinder = (binder as SoundService.SoundServiceBinder)
-                soundServiceBinder?.getService()?.startMediaManager()
                 onServiceAvailable.postValue(soundServiceBinder)
             }
         }

@@ -19,17 +19,6 @@ class MediaPlayerPoolManager {
         return soundPool
     }
 
-    fun setAuthor(author:String){
-        soundPool.author = author
-    }
-
-    fun removeAll(){
-        soundPool.sounds.forEach {
-            it.stop()
-        }
-        soundPool.sounds.clear()
-    }
-
     fun setSoundPool(soundPool: SoundPool){
         this.soundPool = soundPool
         this.soundPool.sounds = soundPool.sounds

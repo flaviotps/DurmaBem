@@ -32,7 +32,7 @@ class MixerFragment : Fragment() {
                 list.add(SoundInfo("Farm", R.raw.farm, R.drawable.farm))
                 list.add(SoundInfo("Water Flow", R.raw.nature_water_flow, R.drawable.waterflow))
                 gridViewSounds.adapter =
-                    context?.let { ctx -> binder.getService().getMediaPoolManager()?.let { mpm ->
+                    context?.let { ctx -> binder.getService().getPoolManager().let { mpm ->
                         SoundGridAdapter(ctx, mpm, list)
                     } }
             }

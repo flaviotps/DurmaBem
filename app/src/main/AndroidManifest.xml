@@ -21,6 +21,7 @@
             <intent-filter>
                 <action android:name="ACTION_PLAY_PAUSE"/>
                 <action android:name="ACTION_CLOSE"/>
+                <action android:name="ACTION_EDIT"/>
             </intent-filter>
         </service>
 
