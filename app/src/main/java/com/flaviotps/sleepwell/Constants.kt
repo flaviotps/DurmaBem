@@ -6,3 +6,4 @@ const val ACTION_CLOSE = "ACTION_CLOSE"
 const val ACTION_EDIT = "ACTION_EDIT"
 const val CHANNEL_ID = "soundChannel"
 const val NOTIFICATION_FLAG = 1
+const val ANDROID_RESOURCE = "android.resource://"

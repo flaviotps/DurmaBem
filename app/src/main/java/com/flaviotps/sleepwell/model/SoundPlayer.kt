@@ -5,6 +5,8 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Handler
 import android.widget.Toast
+import com.flaviotps.sleepwell.ANDROID_RESOURCE
+import java.util.*
 
 class SoundPlayer(var soundInfo: SoundInfo){
 
@@ -15,12 +17,16 @@ class SoundPlayer(var soundInfo: SoundInfo){
     private var isSoundPlaying : Boolean = false
 
     private var runnable1  = {
-        mediaPlayer1?.start()
-        handlerMedia2()
+        if(isSoundPlaying) {
+            mediaPlayer1?.start()
+            handlerMedia2()
+        }
     }
     private var runnable2  = {
-        mediaPlayer2?.start()
-        handlerMedia1()
+        if(isSoundPlaying) {
+            mediaPlayer2?.start()
+            handlerMedia1()
+        }
     }
 
     fun isPlaying(): Boolean {
@@ -28,32 +34,57 @@ class SoundPlayer(var soundInfo: SoundInfo){
     }
 
     fun play(context: Context) {
-        val mediaPath = Uri.parse("android.resource://" + context.packageName + "/" + soundInfo.soundResource)
+        Thread {
+            isSoundPlaying = true
+            val mediaPath =
+                Uri.parse(ANDROID_RESOURCE + context.packageName + "/" + soundInfo.soundResource)
+            if (mediaPlayer1 == null) {
+                mediaPlayer1 = MediaPlayer()
+                mediaPlayer1?.setVolume(soundInfo.volume, soundInfo.volume)
+                mediaPlayer1?.setDataSource(context, mediaPath)
+                mediaPlayer1?.prepareAsync()
+                mediaPlayer1?.setOnPreparedListener {
 
-        if(mediaPlayer1 == null){
-            mediaPlayer1 = MediaPlayer()
-            mediaPlayer1?.setDataSource(context, mediaPath)
-            mediaPlayer1?.prepareAsync()
-            mediaPlayer1?.setOnPreparedListener {
+                    mediaPlayer1?.duration?.minus(soundInfo.loopOffset)?.toLong()?.let { delay ->
+                        val task1 = object : TimerTask() {
+                            override fun run() {
+                                mediaPlayer1?.start()
+                            }
+                        }
+
+                        Timer().schedule(task1, 0, delay)
+                    }
+
+                }
+                mediaPlayer1?.setOnErrorListener { mp, what, extra ->
+                    Toast.makeText(context, "Error Code 1", Toast.LENGTH_SHORT).show()
+                    return@setOnErrorListener false
+                }
+            } else {
                 mediaPlayer1?.start()
-                handlerMedia2()
             }
-        }else{
-            mediaPlayer1?.start()
-        }
 
-        if(mediaPlayer2 == null){
-            mediaPlayer1?.setOnErrorListener { mp, what, extra ->
-                Toast.makeText(context,"Error", Toast.LENGTH_SHORT).show()
-                return@setOnErrorListener false
+            if (mediaPlayer2 == null) {
+                mediaPlayer2?.setOnErrorListener { mp, what, extra ->
+                    Toast.makeText(context, "Error Code 2", Toast.LENGTH_SHORT).show()
+                    return@setOnErrorListener false
+                }
+                mediaPlayer2 = MediaPlayer()
+                mediaPlayer2?.setVolume(soundInfo.volume, soundInfo.volume)
+                mediaPlayer2?.setDataSource(context, mediaPath)
+                mediaPlayer2?.prepare()
+                mediaPlayer2?.duration?.minus(soundInfo.loopOffset)?.toLong()?.let { delay ->
+                    val task1 = object : TimerTask() {
+                        override fun run() {
+                            mediaPlayer2?.start()
+                        }
+                    }
+                    Timer().schedule(task1, delay, delay)
+                }
             }
-            mediaPlayer2 = MediaPlayer()
-            mediaPlayer2?.setDataSource(context, mediaPath)
-            mediaPlayer2?.prepare()
-        }
-
-        isSoundPlaying = true
+        }.start()
     }
+
     fun pause(){
         isSoundPlaying = false
         mediaPlayer1?.pause()
@@ -89,14 +120,14 @@ class SoundPlayer(var soundInfo: SoundInfo){
     private fun handlerMedia2(){
         handler2 = Handler()
         mediaPlayer1?.duration?.minus(soundInfo.loopOffset)?.toLong()?.let { delay ->
-            handler2?.postDelayed(runnable2,delay)
+            handler2?.postDelayed(runnable2, delay)
         }
     }
 
     private fun handlerMedia1(){
         handler1 = Handler()
         mediaPlayer2?.duration?.minus(soundInfo.loopOffset)?.toLong()?.let { delay ->
-            handler1?.postDelayed(runnable1,delay)
+            handler1?.postDelayed(runnable1, delay)
         }
     }
 }

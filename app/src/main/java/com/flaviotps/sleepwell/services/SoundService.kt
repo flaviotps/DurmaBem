@@ -44,7 +44,7 @@ class SoundService : LifecycleService() {
         when (intent?.action) {
             ACTION_PLAY -> {
                 if(getPoolManager().isPlayingAny()) {
-                    getPoolManager().pauseAll()
+                    getPoolManager().stopAll()
                 }else{
                     getPoolManager().playAll(this)
                 }

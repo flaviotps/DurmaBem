@@ -15,4 +15,11 @@
         android:name="com.flaviotps.sleepwell.ui.soundMixer.MixerFragment"
         android:label="fragment_mixer"
         tools:layout="@layout/fragment_mixer" />
+    <action
+        android:id="@+id/action_global_mixerFragment"
+        app:destination="@id/mixerFragment"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_close_exit"
+        app:popEnterAnim="@anim/fragment_open_enter"
+        app:popExitAnim="@anim/fragment_open_exit" />
 </navigation>

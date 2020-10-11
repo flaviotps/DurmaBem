@@ -16,7 +16,7 @@ class PresetRepository {
                    "Heavy Rain",
                    R.raw.nature_heavy_rain,
                    R.drawable.rain,
-                   loopOffset = 2000
+                   loopOffset = 1800
                )
            )))
 
@@ -27,7 +27,7 @@ class PresetRepository {
                         "Ocean",
                         R.raw.nature_sea,
                         R.drawable.rain,
-                        loopOffset = 2000
+                        loopOffset = 1800
                     )
                 )))
 
@@ -38,7 +38,7 @@ class PresetRepository {
                         "Wind",
                         R.raw.nature_wind,
                         R.drawable.rain,
-                        loopOffset = 2000
+                        loopOffset = 1800
                     )
                 )))
 
@@ -49,7 +49,7 @@ class PresetRepository {
                         "Forest",
                         R.raw.nature_forest,
                         R.drawable.rain,
-                        loopOffset = 2000
+                        loopOffset = 1800
                     )
                 )))
 
@@ -60,7 +60,7 @@ class PresetRepository {
                         "Water Flow",
                         R.raw.nature_water_flow,
                         R.drawable.rain,
-                        loopOffset = 2000
+                        loopOffset = 1800
                     )
                 )))
 
@@ -71,7 +71,7 @@ class PresetRepository {
                         "Night",
                         R.raw.night,
                         R.drawable.rain,
-                        loopOffset = 2000
+                        loopOffset = 1800
                     )
                 )))
 
@@ -82,7 +82,7 @@ class PresetRepository {
                         "Farm",
                         R.raw.farm,
                         R.drawable.rain,
-                        loopOffset = 2000
+                        loopOffset = 1800
                     )
                 )))
 
@@ -93,7 +93,7 @@ class PresetRepository {
                         "Snow",
                         R.raw.snow,
                         R.drawable.rain,
-                        loopOffset = 2000
+                        loopOffset = 1800
                     )
                 )))
 
@@ -104,7 +104,7 @@ class PresetRepository {
                         "Waterfall",
                         R.raw.waterfall,
                         R.drawable.rain,
-                        loopOffset = 2000
+                        loopOffset = 1800
                     )
                 )))
 
@@ -116,7 +116,7 @@ class PresetRepository {
                         "Crowded",
                         R.raw.crowd,
                         R.drawable.rain,
-                        loopOffset = 2000
+                        loopOffset = 1800
                     )
                 )))
 
@@ -127,7 +127,7 @@ class PresetRepository {
                         "Fire Pit",
                         R.raw.nature_firewood,
                         R.drawable.rain,
-                        loopOffset = 2000
+                        loopOffset = 1800
                     )
                 )))
 

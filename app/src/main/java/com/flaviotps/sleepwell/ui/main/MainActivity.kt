@@ -43,15 +43,10 @@ class MainActivity : BaseServiceActivity() {
             toolbar_play.setOnClickListener {
                 binder?.getService()?.getPoolManager()?.apply {
                     if (isPlayingAny()) {
-                        pauseAll()
+                        stopAll()
                     } else {
                         playAll(this@MainActivity)
                     }
-                }
-            }
-            toolbar_stop.setOnClickListener {
-                binder?.getService()?.getPoolManager()?.apply {
-                    stopAll()
                 }
             }
             binder?.getService()?.getPoolManager()?.isAnyPlayingLiveData()?.observe(this, Observer {playing ->

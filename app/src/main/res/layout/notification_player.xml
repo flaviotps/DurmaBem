@@ -104,7 +104,7 @@
             android:layout_marginBottom="8dp"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_baseline_stop_24" />
+            android:src="@drawable/ic_close_black_24dp" />
 
 
     </LinearLayout>
