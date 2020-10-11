@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.toolbar_custom.*
 class MainActivity : BaseServiceActivity() {
 
     private lateinit var navController: NavController
+    private var isPlaying = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,23 +41,23 @@ class MainActivity : BaseServiceActivity() {
 
     private fun togglePlayPause(){
         onServiceAvailable().observe(this, Observer {binder ->
+            binder?.getService()?.getPoolManager()?.isAnyPlayingLiveData()?.observe(this, Observer {playing ->
+                if(playing){
+                    toolbar_play?.setImageResource(R.drawable.ic_pause_black_24dp)
+                }else{
+                    toolbar_play?.setImageResource(R.drawable.ic_play_arrow_white_24dp)
+                }
+            })
+
             toolbar_play.setOnClickListener {
-                binder?.getService()?.getPoolManager()?.apply {
-                    if (isPlayingAny()) {
-                        stopAll()
-                    } else {
-                        playAll(this@MainActivity)
+                binder?.getService()?.getPoolManager()?.isPlayingAny()?.let {
+                    if(it){
+                        binder.getService().getPoolManager().stopAll()
+                    }else{
+                        binder.getService().getPoolManager().playAll(this)
                     }
                 }
             }
-            binder?.getService()?.getPoolManager()?.isAnyPlayingLiveData()?.observe(this, Observer {playing ->
-                val playAndPause = supportActionBar?.customView?.findViewById<ImageButton>(R.id.toolbar_play)
-                if(playing){
-                    playAndPause?.setImageResource(R.drawable.ic_pause_black_24dp)
-                }else{
-                    playAndPause?.setImageResource(R.drawable.ic_play_arrow_white_24dp)
-                }
-            })
         })
     }
 
