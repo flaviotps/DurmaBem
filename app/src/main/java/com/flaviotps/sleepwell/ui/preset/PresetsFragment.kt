@@ -24,7 +24,7 @@ class PresetsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        presetRepository = PresetRepository()
+         context?.let { presetRepository = PresetRepository(it) }
 
         (activity as BaseServiceActivity).onServiceAvailable().observe(this, Observer {
             it?.let { binder ->

@@ -23,18 +23,18 @@
 
     <string name="mixer_heavy_rain">Heavy rain</string>
     <string name="mixer_soft_rain">Soft rain</string>
-    <string name="mixer_rain_roof">Rain on the \nroof</string>
-    <string name="mixer_rain_umbrella">Rain in the \numbrella</string>
-    <string name="mixer_rain_window">Rain on the \nwindow</string>
+    <string name="mixer_rain_roof">Rain on the roof</string>
+    <string name="mixer_rain_umbrella">Rain in the umbrella</string>
+    <string name="mixer_rain_window">Rain on the window</string>
 
-    <string name="mixer_meditation_melody">Meditation \nmelody</string>
-    <string name="mixer_meditation_bell">Meditation \nbell</string>
-    <string name="mixer_meditation_bowl">Meditation \nbowl</string>
-    <string name="mixer_meditation_flute">Meditation \nflute</string>
-    <string name="mixer_meditation_harmony">Meditation \nharmony</string>
-    <string name="mixer_meditation_hope">Meditation \nhope</string>
-    <string name="mixer_meditation_piano">Meditation \npiano</string>
-    <string name="mixer_meditation_windchimes">Meditation \nwind Chimes</string>
+    <string name="mixer_meditation_melody">Meditation melody</string>
+    <string name="mixer_meditation_bell">Meditation bell</string>
+    <string name="mixer_meditation_bowl">Meditation bowl</string>
+    <string name="mixer_meditation_flute">Meditation flute</string>
+    <string name="mixer_meditation_harmony">Meditation harmony</string>
+    <string name="mixer_meditation_hope">Meditation hope</string>
+    <string name="mixer_meditation_piano">Meditation piano</string>
+    <string name="mixer_meditation_windchimes">Meditation wind Chimes</string>
 
     <string name="mixer_ocean">Ocean</string>
     <string name="mixer_wind">Wind</string>
@@ -47,7 +47,7 @@
     <string name="mixer_waterfall">Waterfall</string>
     <string name="mixer_firewood">Firewood</string>
     <string name="mixer_crowded">Crowded</string>
-    <string name="mixer_city_rails">\"City rails \"</string>
+    <string name="mixer_city_rails">City rails</string>
     <string name="mixer_keyboard">Keyboard</string>
     <string name="mixer_clock">Clock</string>
 
