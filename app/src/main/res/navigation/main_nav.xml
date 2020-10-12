@@ -22,4 +22,9 @@
         app:exitAnim="@anim/fragment_close_exit"
         app:popEnterAnim="@anim/fragment_open_enter"
         app:popExitAnim="@anim/fragment_open_exit" />
+    <fragment
+        android:id="@+id/chronometerFragment"
+        android:name="com.flaviotps.sleepwell.ui.chronometer.ChronometerFragment"
+        android:label="fragment_chronometer"
+        tools:layout="@layout/fragment_chronometer" />
 </navigation>

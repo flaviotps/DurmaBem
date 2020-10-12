@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.chronometer.ChronometerFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/min5"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_5min"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/min15"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_15min"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/min30"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_30min"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/h1"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_1h"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/h2"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_2h"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/h3"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_3h"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/h4"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_4h"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/h5"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_5h"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/h6"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_6h"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/h7"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_7h"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/h8"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/_8h"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_state"
+                app:chipCornerRadius="0dp" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/timeLeft"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="#0D2E2E2E"
+        android:gravity="center"
+        android:padding="32dp"
+        android:shadowColor="@android:color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="5"
+        android:text="@string/heavy_rain"
+        android:textColor="@android:color/white"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/timerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+
+
+    <Button
+        android:id="@+id/timerButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/start_timer_button"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="5"
+        android:text="@string/start"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </Button>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

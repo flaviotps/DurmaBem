@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.toolbar_custom.*
 class MainActivity : BaseServiceActivity() {
 
     private lateinit var navController: NavController
-    private var isPlaying = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

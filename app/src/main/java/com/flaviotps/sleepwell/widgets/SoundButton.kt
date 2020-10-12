@@ -64,7 +64,7 @@ class SoundButton @JvmOverloads constructor(
     }
 
     fun setIcon(res:Int){
-        icon.setImageDrawable(context.getDrawable(res))
+        icon.setImageDrawable(ContextCompat.getDrawable(context,res))
     }
 
     fun isActive(): Boolean {

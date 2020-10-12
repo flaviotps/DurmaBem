@@ -11,4 +11,10 @@
         android:icon="@drawable/ic_equalizer"
         android:id="@+id/mixerFragment"
         android:title="Mixer" />
+
+    <item
+        android:iconTint="@android:color/white"
+        android:icon="@drawable/chronometer"
+        android:id="@+id/chronometerFragment"
+        android:title="Chronometer" />
 </menu>

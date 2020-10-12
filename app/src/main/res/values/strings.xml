@@ -1,6 +1,75 @@
 <resources>
-    <string name="app_name">Sleep Well</string>
-    <string name="title_activity_splash">SplashActivity</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name" translatable="true">Sleep Well</string>
+    <string name="_5min" translatable="false">5min</string>
+    <string name="_15min" translatable="false">15min</string>
+    <string name="_30min" translatable="false">30min</string>
+    <string name="_1h" translatable="false">1h</string>
+    <string name="_2h" translatable="false">2h</string>
+    <string name="_3h" translatable="false">3h</string>
+    <string name="_4h" translatable="false">4h</string>
+    <string name="_5h" translatable="false">5h</string>
+    <string name="_6h" translatable="false">6h</string>
+    <string name="_7h" translatable="false">7h</string>
+    <string name="_8h" translatable="false">8h</string>
+    <string name="heavy_rain" translatable="true">Heavy Rain</string>
+    <string name="start" translatable="true">Start</string>
+    <string name="stop" translatable="true">Stop</string>
+    <string name="rain" translatable="true">Rain</string>
+    <string name="nature" translatable="true">Nature</string>
+    <string name="animal" translatable="true">Animal</string>
+    <string name="meditation" translatable="true">Meditation</string>
+    <string name="noise" translatable="true">Noise</string>
+    <string name="urban" translatable="true">Urban</string>
+
+    <string name="mixer_heavy_rain">Heavy rain</string>
+    <string name="mixer_soft_rain">Soft rain</string>
+    <string name="mixer_rain_roof">Rain on the \nroof</string>
+    <string name="mixer_rain_umbrella">Rain in the \numbrella</string>
+    <string name="mixer_rain_window">Rain on the \nwindow</string>
+
+    <string name="mixer_meditation_melody">Meditation \nmelody</string>
+    <string name="mixer_meditation_bell">Meditation \nbell</string>
+    <string name="mixer_meditation_bowl">Meditation \nbowl</string>
+    <string name="mixer_meditation_flute">Meditation \nflute</string>
+    <string name="mixer_meditation_harmony">Meditation \nharmony</string>
+    <string name="mixer_meditation_hope">Meditation \nhope</string>
+    <string name="mixer_meditation_piano">Meditation \npiano</string>
+    <string name="mixer_meditation_windchimes">Meditation \nwind Chimes</string>
+
+    <string name="mixer_ocean">Ocean</string>
+    <string name="mixer_wind">Wind</string>
+    <string name="mixer_thunder">Thunder</string>
+    <string name="mixer_forest">Forest</string>
+    <string name="mixer_water_flow">Water flow</string>
+    <string name="mixer_night">Night</string>
+    <string name="mixer_farm">Farm</string>
+    <string name="mixer_snow">Snow</string>
+    <string name="mixer_waterfall">Waterfall</string>
+    <string name="mixer_firewood">Firewood</string>
+    <string name="mixer_crowded">Crowded</string>
+    <string name="mixer_city_rails">\"City rails \"</string>
+    <string name="mixer_keyboard">Keyboard</string>
+    <string name="mixer_clock">Clock</string>
+
+    <string name="mixer_forest_birds">Forest birds</string>
+    <string name="mixer_birds">Birds</string>
+    <string name="mixer_birds2">Birds 2</string>
+    <string name="mixer_crickets">Crickets</string>
+    <string name="mixer_frog">Frog</string>
+    <string name="mixer_cicada">Cicada</string>
+    <string name="mixer_whale">Whale</string>
+    <string name="mixer_white_noise">White noise</string>
+    <string name="mixer_brown_noise">Brown noise</string>
+    <string name="mixer_pink_noise">Pink noise</string>
+    <string name="preset_thunder_Storm">Thunder storm</string>
+    <string name="preset_meditation_bell">Meditation bell</string>
+    <string name="preset_meditation_bowl">Meditation bowl</string>
+    <string name="preset_meditation_harmony">Meditation harmony</string>
+    <string name="preset_meditation_flute">Meditation flute</string>
+    <string name="preset_meditation_hope">Meditation hope</string>
+    <string name="preset_meditation_piano">Meditation piano</string>
+    <string name="preset_meditation_melody">Meditation melody</string>
+
+
 </resources>
+

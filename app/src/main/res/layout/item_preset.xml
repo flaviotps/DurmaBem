@@ -13,8 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:srcCompat="@drawable/cofe_thumb" />
+        app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
         android:shadowColor="@android:color/black"
@@ -25,7 +24,7 @@
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#4D2E2E2E"
+        android:background="#8F2E2E2E"
         android:text="Heavy Rain"
         android:textColor="@android:color/white"
         android:textSize="18sp"

@@ -1,15 +1,20 @@
 package com.flaviotps.sleepwell.services
 
 
-import android.app.*
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Binder
 import android.os.Build
+import android.os.CountDownTimer
 import android.os.IBinder
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.flaviotps.sleepwell.*
 import com.flaviotps.sleepwell.ext.setDrawableById
@@ -19,15 +24,45 @@ import com.flaviotps.sleepwell.ui.splash.SplashActivity
 
 class SoundService : LifecycleService() {
 
-    private var binder = SoundServiceBinder()
+    private var chronometerTime: MutableLiveData<Long> = MutableLiveData(0)
     private lateinit var mediaPlayerPoolManager: MediaPlayerPoolManager
     private lateinit var notificationManager: NotificationManager
+    private var binder = SoundServiceBinder()
+    private var timer: CountDownTimer? = null
 
     override fun onCreate() {
         super.onCreate()
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         mediaPlayerPoolManager = MediaPlayerPoolManager()
         getPoolManager().isAnyPlayingLiveData().observe(this, Observer { createNotification() })
+    }
+
+    fun getChronometerTime(): MutableLiveData<Long> {
+        return chronometerTime
+    }
+
+    fun stopTimer() {
+        chronometerTime.postValue(0)
+         timer?.cancel()
+    }
+
+    fun startTimer(totalTime : Long){
+        chronometerTime.postValue(totalTime)
+         timer = object : CountDownTimer(totalTime,1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                var tempValue: Long = 0
+                chronometerTime.value?.let {
+                    tempValue = it
+                }
+                tempValue -= 1000
+                chronometerTime.postValue(tempValue)
+            }
+
+            override fun onFinish() {
+                mediaPlayerPoolManager.stopAll()
+                stopForeground(true)
+            }
+        }.start()
     }
 
     inner class SoundServiceBinder : Binder() {

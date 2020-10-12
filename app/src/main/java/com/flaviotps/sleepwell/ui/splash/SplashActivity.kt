@@ -18,6 +18,6 @@ class SplashActivity : AppCompatActivity() {
                 putExtras(intent)
                 startActivity(this)
             }
-        }, 0)
+        }, 2000)
     }
 }
